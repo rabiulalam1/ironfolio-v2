@@ -1,0 +1,37 @@
+/* .profile {
+  position: absolute;
+  bottom: 75%;
+  left: 45%;
+} */
+
+h1 {
+  text-align: center;
+}
+/* 
+.MuiPaper-root {
+  background-color: none !important;
+} */
+
+#projects {
+  width: 75% !important;
+  margin: 0 auto !important;
+  /*position: absolute;
+  top: 120px;
+  right: 100px;
+  left: 140px; */
+}
+
+.instructions {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+  margin: 0 150px;
+}
+
+ul {
+  line-height: 2;
+}

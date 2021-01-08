@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  /* flex-wrap: wrap; */
+}
+
+.google {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40vh;
+  align-content: center;
+  align-items: center;
+}
