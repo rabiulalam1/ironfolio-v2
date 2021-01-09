@@ -6,3 +6,13 @@
   align-content: center;
   align-items: center;
 }
+
+.MuiAppBar-colorPrimary {
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e) !important;
+}
+.MuiPaper-root {
+}
+
+* {
+  text-decoration: none !important;
+}

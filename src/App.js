@@ -3,7 +3,7 @@ import { Switch, Route, NavLink, useHistory } from 'react-router-dom';
 import './App.css';
 //Importing Components
 import Footer from './components/Footer';
-import NavBar from './components/NavBar';
+
 import Archive from './components/Archive';
 import ArchiveDetail from './components/ArchiveDetail';
 import Favorites from './components/Favorites';
@@ -38,18 +38,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Avatar from '@material-ui/core/Avatar';
-import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import ArchiveRoundedIcon from "@material-ui/icons/ArchiveRounded";
-import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
-import ContactSupportRoundedIcon from "@material-ui/icons/ContactSupportRounded";
-import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
+import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import ContactSupportRoundedIcon from '@material-ui/icons/ContactSupportRounded';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from "@material-ui/core/Link";
+import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
 
@@ -73,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 15,
   },
   hide: {
     display: 'none',
@@ -139,11 +137,11 @@ function App() {
     setOpen(false);
   };
 
-    const logOut = async () => {
+  const logOut = async () => {
     let res = await actions.logOut();
     // window.confirm("Are you sure you want to log out?");
     setUser(null);
-    history.push("/");
+    history.push('/');
   };
 
   const history = useHistory();
@@ -151,8 +149,8 @@ function App() {
   return user === null || // if statement to see if user is register or not. if it is page will go to the profile
     user === undefined || // if not, 404 will display
     JSON.stringify(user) === '{}' ? (
-    <div className='google'>
-      <div className='header'>
+    <div className="google">
+      <div className="header">
         <h1>IRONFOLIO</h1>
         <p>Where you can explore and collaborate...</p>
       </div>
@@ -162,170 +160,172 @@ function App() {
       <NotificationContainer />
     </div>
   ) : (
-    <div>
+    <div style={{ minHeight: '100vh', position: 'relative' }}>
       <TheContext.Provider value={{ history, user, setUser }}>
-      <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position='fixed'
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+        <div className={classes.root} style={{ paddingBottom: '20px' }}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
             })}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography style={{display: 'flex', justifyContent: 'space-between', width: '100%'}} variant='h6' noWrap>
-            <span>Ironfolio</span>
-            <div style={{display: 'flex'}}>
-              <span style={{paddingRight: '20px'}}>{user?.name}</span>
-              <Avatar src={user?.imageUrl} />
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, {
+                  [classes.hide]: open,
+                })}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+                variant="h6"
+                noWrap
+              >
+                <span>Ironfolio</span>
+                <div style={{ display: 'flex' }}>
+                  <span style={{ paddingRight: '20px' }}>{user?.name}</span>
+                  <Avatar src={user?.imageUrl} />
+                </div>
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            className={clsx(classes.drawer, {
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            })}
+            classes={{
+              paper: clsx({
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+              }),
+            }}
+          >
+            <div className={classes.toolbar}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'rtl' ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ChevronLeftIcon />
+                )}
+              </IconButton>
             </div>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant='permanent'
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-              <List>
+            <Divider />
+            <List>
               <Link component={RouterLink} to="/">
-            <ListItem button key='Profile'>
-              <ListItemIcon>
-              <AccountBoxRoundedIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Profile' />      
-              </ListItem>
+                <ListItem button key="Profile">
+                  <ListItemIcon>
+                    <AccountBoxRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
+                </ListItem>
+              </Link>
+              {user.userType === 'admin' ? (
+                <Link component={RouterLink} to="/addNewClass">
+                  <ListItem button key="Add New Class">
+                    <ListItemIcon>
+                      <GroupAddIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Add New Class" />
+                  </ListItem>
                 </Link>
-                {user.userType === "admin" ? (
-                <Link
-                  component={RouterLink}
-                  to="/addNewClass"
-                >
-                 <ListItem button key='Add New Class'>
-              <ListItemIcon>
-              <GroupAddIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Add New Class' />      
-              </ListItem>
-                </Link>
-                ) : null}
-                <Link component={RouterLink} to="/newproject">
-            <ListItem button key='Add New Project'>
-              <ListItemIcon>
-              <AddBoxIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Add New Project' />      
-              </ListItem>
-                </Link>
-                <Link component={RouterLink} to="/archive">
-            <ListItem button key='Archives'>
-              <ListItemIcon>
-              <ArchiveRoundedIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Archives' />      
-              </ListItem>
-        </Link>
-                
-        <Link component={RouterLink} to="/favorites">
-            <ListItem button key='Favorites'>
-              <ListItemIcon>
-              <FavoriteBorderRoundedIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Favorites' />      
-              </ListItem>
-                </Link>
-                <Link href="https://iqueue.netlify.app" target="_blank">
-            <ListItem button key='iQueue'>
-              <ListItemIcon>
-              <ContactSupportRoundedIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='iQueue' />      
-              </ListItem>
-                </Link>
-                <Link onClick={logOut}>
-            <ListItem button key='Logout'>
-              <ListItemIcon>
-              <ExitToAppRoundedIcon/>
-              </ListItemIcon>
-                    <ListItemText primary='Logout' />      
-              </ListItem>
-        </Link>
-        </List>
-               
-        <Divider />
-        <List>
-          
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Switch>
-            <Route exact path='/' render={() => <Profile user={user} />} />
-            <Route
-              exact
-              path='/addNewClass'
-              render={() => <AddNewClass user={user} />}
-            />
-            <Route
-              exact
-              path='/editProject/:id'
-              render={(props) => <FormUpdate {...props} user={user} />}
-            />
-            <Route
-              exact
-              path='/newproject'
-              render={() => <AddNew user={user} />}
-            />
-            <Route
-              exact
-              path='/archive'
-              render={(props) => <Archive {...props} user={user} />}
-            />
-            <Route
-              exact
-              path='/archive/:id'
-              render={(props) => <ArchiveDetail {...props} user={user} />}
-            />
-            <Route
-              exact
-              path='/favorites'
-              render={(props) => <Favorites {...props} user={user} />}
-            />
-          </Switch>
-      </main>
+              ) : null}
+              <Link component={RouterLink} to="/newproject">
+                <ListItem button key="Add New Project">
+                  <ListItemIcon>
+                    <AddBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Add New Project" />
+                </ListItem>
+              </Link>
+              <Link component={RouterLink} to="/archive">
+                <ListItem button key="Archives">
+                  <ListItemIcon>
+                    <ArchiveRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Archives" />
+                </ListItem>
+              </Link>
 
-    </div>
+              <Link component={RouterLink} to="/favorites">
+                <ListItem button key="Favorites">
+                  <ListItemIcon>
+                    <FavoriteBorderRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Favorites" />
+                </ListItem>
+              </Link>
+              <Link href="https://iqueue.netlify.app" target="_blank">
+                <ListItem button key="iQueue">
+                  <ListItemIcon>
+                    <ContactSupportRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="iQueue" />
+                </ListItem>
+              </Link>
+              <Link onClick={logOut}>
+                <ListItem button key="Logout">
+                  <ListItemIcon>
+                    <ExitToAppRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItem>
+              </Link>
+            </List>
+
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Switch>
+              <Route exact path="/" render={() => <Profile user={user} />} />
+              <Route
+                exact
+                path="/addNewClass"
+                render={() => <AddNewClass user={user} />}
+              />
+              <Route
+                exact
+                path="/editProject/:id"
+                render={(props) => <FormUpdate {...props} user={user} />}
+              />
+              <Route
+                exact
+                path="/newproject"
+                render={() => <AddNew user={user} />}
+              />
+              <Route
+                exact
+                path="/archive"
+                render={(props) => <Archive {...props} user={user} />}
+              />
+              <Route
+                exact
+                path="/archive/:id"
+                render={(props) => <ArchiveDetail {...props} user={user} />}
+              />
+              <Route
+                exact
+                path="/favorites"
+                render={(props) => <Favorites {...props} user={user} />}
+              />
+            </Switch>
+          </main>
+        </div>
       </TheContext.Provider>
       <Footer />
+
       <NotificationContainer />
     </div>
   );
