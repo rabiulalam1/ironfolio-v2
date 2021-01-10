@@ -89,10 +89,11 @@ function EnhancedTableHead(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // width: "50vw",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   paper: {
-  
     marginBottom: theme.spacing(2),
   },
   visuallyHidden: {
@@ -112,7 +113,11 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    textAlign: "center"
   },
+  table: {
+    
+  }
 }));
 
 function Archive(props) {
@@ -187,7 +192,7 @@ function Archive(props) {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <Container maxWidth="xl">
+
       <div className="archive">
         <div className={classes.root}>
           <Paper className={classes.paper}>
@@ -195,7 +200,7 @@ function Archive(props) {
               <Table
                 className={classes.table}
                 aria-labelledby="tableTitle"
-                size="medium"
+                size="large"
                 aria-label="enhanced table"
               >
                 <EnhancedTableHead
@@ -246,7 +251,6 @@ function Archive(props) {
           </Paper>
         </div>
       </div>
-    </Container>
   );
 }
 
